@@ -48,7 +48,7 @@
                         <a class="nav-link active" aria-current="page" href="code.html">The Code</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" target="_blank" href="#">Git Repo</a>
+                        <a class="nav-link" target="_blank" href="https://github.com/Bill-Pill/Fully-Charged">Git Repo</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" target="_blank" href="https://billpill-portfolio.netlify.app/">About</a>
@@ -65,17 +65,79 @@
                 <div class="col-lg-8">
                     <pre class="line-numbers">
                         <code class="language-javascript">
-                            //Call Hello World
-                            function helloWorld(){
-                                alert("Hey World!");
-                            }
+                            // Get values from user inputs
+// Start/controller function
+function getValues() {
+    // Get values from page inputs
+    let startValue = document.getElementById("startValue").value;
+    let endValue = document.getElementById("endValue").value;
+
+    // Input validation
+    // Parse input into integers
+    startValue = parseInt(startValue);
+    endValue = parseInt(endValue);
+
+    if (Number.isInteger(startValue) && Number.isInteger(endValue)) {
+        // Call generateNumbers
+        let numbers = generateNumbers(startValue, endValue);
+        // Call displayNumbers
+        displayNumbers(numbers);
+
+    } else {
+        alert("You must enter integers");
+    }
+
+    
+}
+
+// Generate numbers fom startValue to endValue
+// Logic function(s)
+function generateNumbers(sValue, eValue) {
+
+    let numbers = [];
+
+    // Get numbers from start to finish
+    for (let i = sValue; i <= eValue; i++) {
+        numbers.push(i);
+    }
+
+    return numbers;
+}
+
+// Display the numbers and mark evens as bold
+// Display/view functions
+function displayNumbers(numbers) {
+
+    let templateRows = "";
+
+    for (let index = 0; index < numbers.length; index++) {
+
+        let className = "even";
+        let number = numbers[index];
+
+        if(number % 2 === 0) {
+            className = "even";
+        }
+        else {
+            className = "odd"
+        }
+        // This renders incorrectly with Prism. See source
+        templateRows += `<tr><td class="${className}">${number}</td></tr>`;
+    }
+
+    document.getElementById("results").innerHTML = templateRows;
+}
                         </code>
                     </pre>
                 </div>
                 <div class="col-lg-4">
-                    <p>The Code is structured in one function.</p>
-                    <h5>Hello World</h5>
-                    <p>Hello World is a function that displays an alert with a message of "Hey World!"</p>
+                    <p>The Code is structured in three functions:</p>
+                    <h5>getValues</h5>
+                    <p>Once the 'Go!' button is hit, the start/end value inputs are saved and validated as integer values. If validation passes, we continue with these values as they're passed to our next function(generateNumbers). If validation fails, an alert will pop up and the code will stop.</p>
+                    <h5>generateNumbers</h5>
+                    <p>generateNumbers begins to iterate through each integer(starting startValue & ending at endValue) in increments of 1. Each value is pushed into the numbers array. This array is then returned at the end, completing this function. There is a final function call for displayNumbers that applies these numbers to the HTML results.</p>
+                    <h5>displayNumbers</h5>
+                    <p>displayNumbers takes the numbers array returned from the previous function and inputs each into a template literal string(each number generating a table cell string). Once iteration is complete, we apply it to the innerHTML of our results table.</p>
                 </div>
             </div>
         </div>

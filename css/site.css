@@ -5,6 +5,14 @@
     --white-color: #BDBDBD;
 }
 
+.odd {
+    font-weight: 100;
+}
+
+.even {
+    font-weight: bold;
+}
+
 .logoFont {
     font-family: 'Raleway', sans-serif;
     font-weight: 600;
